@@ -105,20 +105,7 @@ namespace Numero
                             lblResultado.Text += "La letra: " + (char)(aux + 97) + " Se repite:" + frecuenciaLetras[aux] + " Veces <br/> ";
                         }
                     }
-                    /*
-                    for (int aux = 0; aux < frecuenciaLetras.Length; aux++)
-                    {
-                        ///ACA YA MANEJO TODOS LOS VALORES DE REPETICION DE LAS LETRAS
-                        ///SEPARO LAS VOCALES a = 97 , e = 101 , i = 105, o = 111 , u = 117 
-                        /// y por ende sapare las consonantes con esos datos.
-                        if (frecuenciaLetras[aux] != 0)
-                        {
-                            /// MessageBox.Show("La letra" + (char)(aux + 97) + " Se repite:" + frecuenciaLetras[aux],"Mensaje");
-                            lblResultado.Text += "La letra: " + (char)(aux + 97) + " Se repite:" + frecuenciaLetras[aux] + " Veces <br/> ";
 
-                        }
-                    }
-                    */
                     lblResultado.Text += $"El Número de la primer vocal es: {primerVocal} <br/>";
                     lblResultado.Text += $"El Número de la ultima vocal es: {ultimaVocal} <br/>";
 
@@ -476,17 +463,6 @@ namespace Numero
             {
                 MessageBox.Show("Formato de fecha no válido. Por favor, ingresa la fecha en formato DD/MM/AAAA.", "Mensaje");
             }
-            /*
-            for (int i = 0; i < 300; i++)
-            {
-                for (int j = 0; j < CantNombres; j++)
-                {
-                   MessageBox.Show("En el año "+(anio+i+1)+"En la fila: "+i+" columna: "+j+ " la letra vale: "+ vibracionesAnuales[i, j] ,"mensaje");
-
-                }
-
-            }
-            */
 
             for (int i = 0; i < 300; i++)
             {
@@ -515,15 +491,17 @@ namespace Numero
         protected void btnAuto_Click(object sender, EventArgs e)
         {
 
-            //Ingresar fecha de nacimiento, nombre
+            //Ingresar nombre
             string nombreCompleto = tbNombre.Text.ToLower().Trim() + " " + tbApellidos.Text.ToLower().Trim();
             string[] nombres = nombreCompleto.Split(' ');
             int CantNombres = nombres.Length;
 
+           
             // Variables para calcular el número de vibración del reto
             int primerVocal = -1;
             int ultimaVocal = -1;
-
+            int PrimerConso = -1;
+            int UltimaConso = -1;
 
             // Variables para contar la frecuencia de cada letra de la "a" a la "z"
             int[,] frecuenciaLetras1 = new int[26, CantNombres];
@@ -537,17 +515,26 @@ namespace Numero
                 }
             }
 
-            // Verificar si se ingresaron hasta 3 nombres
+       
             int aux1 = 0;
             // Iterar sobre cada nombre
+            int SumaConso = 0;
+            int SumaVoc = 0;
+            int SumaTot = 0;
+     
+            int[] SumaVocales= new int [CantNombres];
+            for (int i = 0; i < CantNombres; i++)
+            {
+                    SumaVocales[i] = 0;
+            }
+
             foreach (string nombre in nombres)
             {
-                /// MessageBox.Show($"Letras del nombre {nombre}:", "Mensaje");
-                char primerletra = nombre[0];
-                int indiceLetra1 = (int)primerletra - 97;
 
                 foreach (var letra in nombre)
                 {
+                    //LA MATRIZ ME GUARDA EN CADA COLUMNA LAS LETRAS QUE APARECEN EN EL NOMBRE REPARTIDAS EN EL ABECEDARIO
+                    // SUMANDO UNO EN LA POSICION CORRESPONDIENTE LLEGANDO A 26 
                     int indicereal = (int)letra - 97;
                     frecuenciaLetras1[indicereal, aux1]++;
                     MessageBox.Show("La letra es :" + letra);
@@ -559,33 +546,51 @@ namespace Numero
                             primerVocal = indicereal + 1;
                         }
                         ultimaVocal = indicereal + 1;
+                        SumaVoc += (indicereal + 1);
+                        SumaVocales[aux1] += indicereal + 1;
                     }
+                    else
+                    {
+                        if (PrimerConso == -1)
+                        {
+                            PrimerConso = indicereal + 1;
+                        }
+                        UltimaConso = indicereal + 1;
+                        SumaConso += (indicereal + 1);
+                    }
+                    
                 }
                 aux1++;
+                
                 ///ACA QUERRIA QUE ME MUESTRE TODOS LAS LETRAS DE CADA UNO DE LOS NOMBRES O ME LOS GUARDE
-                ///
                 ///  MessageBox.Show($"Total de letras en {nombre}: {nombre.Length}", "Mensaje");
             }
+            SumaTot = SumaVoc + SumaConso;
+            int VocRed = ReducirADigito(SumaVoc);
+            int ConsoRed = ReducirADigito(SumaConso);
+            int TotRed=ReducirADigito(SumaTot);
 
-            aux1 = 0;
-            foreach (string nombre in nombres)
+            ///PERSONALIDAD INTERNA (AUTO MOTIVACION)
+            ///PERSONALIDAD EXTERNA (AUTO IMAGEN)
+            ///TALENTO AUTO EXPRESION
+            MessageBox.Show($"SUMA VOCALES {SumaVoc}  VOCALES REDUCIDAS{VocRed}", "Mensaje");
+            MessageBox.Show($"SUMA CONSO {SumaConso}  CONSO REDUCIDAS{ConsoRed}", "Mensaje");
+            MessageBox.Show($"SUMA TOT {SumaTot}  TOT REDUCIDAS{TotRed}", "Mensaje");
+
+            ///Reto Auto motivacion Primer vocal - Ultima vocal
+            ///Reto Auto imagen  primer conso - Ultima conso 
+            ///Reto de Auto expresion suma de los 2 anteriores. 
+            int RetoMoti = Math.Abs(ReducirADigito(primerVocal - ultimaVocal));
+            int RetoIma = Math.Abs(ReducirADigito(PrimerConso - UltimaConso));
+            int RetoExp = ReducirADigito(RetoMoti + RetoIma);
+            MessageBox.Show($"Reto motivacion {RetoMoti}  ", "Mensaje");
+            MessageBox.Show($"Reto Imagen {RetoIma}  ", "Mensaje");
+            MessageBox.Show($"Reto Expresion {RetoExp}  ", "Mensaje");
+
+            for (int i = 0; i < CantNombres; i++)
             {
-
-                foreach (var letra in nombre)
-                {
-                    int indicereal = (int)letra - 97;
-                    MessageBox.Show($"El indice de la letra es: { indicereal}   El Nro de nombre es: { aux1}   Y VALE: { frecuenciaLetras1[indicereal, aux1]} ", "equisde");
-                
-                }
-                aux1++;
+                MessageBox.Show($"SUMA DE LAS VOCALES DEL NOMBRE/APELLIDO EN LA POSICION {i+1}   YA REDUCIDO DA:{ReducirADigito(SumaVocales[i])}  ", "Mensaje");
             }
-
-            ///AHORA TENGO QUE HACER QUE NO REPITA LAS LETRAS QUE YA ME MOSTRO, PERO YA TENGO LA MATRIZ CON CADA COLUMNA CON EL INDICE COMO LETRA
-            /// Y COMO COLUMNA EL 0 1 2 PARA SABER SI ES EL 1ER 2DO O 3ER NOMBRE/APELLIDO HASTA 5 maximo
-            ///  LUEGO TENGO QUE SEPARAR LAS CONSONANTES DE LAS VOCALES Y SUMARLAS Y REDUCIRLAS, Y LUEGO AMBAS 
-            ///  MOTIVACION/IMAGEN / EXPRESION  = VOCALES / CONSO / SUMATOTAL
-
-
 
         }
 
