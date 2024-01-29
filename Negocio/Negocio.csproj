@@ -48,10 +48,13 @@
     <Compile Include="NegocioDestino.cs" />
     <Compile Include="NegocioDiaPersonal.cs" />
     <Compile Include="NegocioExpresion.cs" />
+    <Compile Include="NegocioHerencia.cs" />
     <Compile Include="NegocioImagen.cs" />
     <Compile Include="NegocioMesPersonal.cs" />
     <Compile Include="NegocioMotivacion.cs" />
     <Compile Include="NegocioPinaculo.cs" />
+    <Compile Include="NegocioReto.cs" />
+    <Compile Include="NegocioVibracionCasa.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

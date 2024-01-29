@@ -16,6 +16,7 @@ namespace Numero
 
         }
 
+        /*
         protected void Button1_Click(object sender, EventArgs e)
         {
             ///------------------------PARA OBTENER EL VALOR DE LAS LETRAS DEL NOMBRE / APELLIDO ---------------------------------------
@@ -127,7 +128,9 @@ namespace Numero
                 MessageBox.Show("Has ingresado mas de 3 nombres Por favor, intenta nuevamente.", "Mensaje");
             }
         }
+        */
 
+        /*
         protected void btnCalcular_Click(object sender, EventArgs e)
         {
             ///----------------------- PARA OBTENER LOS DATOS A TRAVES DE LA FECHA DE NACIMIENTO ---------------------------------
@@ -257,6 +260,7 @@ namespace Numero
                         }
                         // Muestra los resultados
                         MessageBox.Show($"Periodo {i + 1}: Desde {fechasInicio[i].ToString("dd/MM/yyyy")} hasta {fechasFin[i].ToString("dd/MM/yyyy")}", "Mensaje");
+
                     }
                 }
                 else
@@ -265,6 +269,7 @@ namespace Numero
                 }
             }
         }
+        */
 
         static bool EsBisiesto(int año)
         {
@@ -294,6 +299,7 @@ namespace Numero
             return numero;
         }
 
+        /*
         protected void btnCalcularCasa_Click(object sender, EventArgs e)
         {
             string input2 = tbCasas.Text.ToLower().Trim();
@@ -351,7 +357,9 @@ namespace Numero
             int totalfinal = totalLetras + totalNumeros;
             MessageBox.Show($"Y SU Vibración total  FINAL de las casas: " + ReducirADigito(totalfinal), "Mensaje");
         }
+        */
 
+        /*
         protected void lblVibracionAnual_Click(object sender, EventArgs e)
         {
             //Ingresar fecha de nacimiento, nombre y apellido
@@ -487,7 +495,7 @@ namespace Numero
                     MessageBox.Show($"Año {anio + i + 1}: Edad = {edad}, Vibración Anual Final = {vibracionFinal}", "Información");
                 }
             }
-        }
+        }*/
 
         /// ASPECTO DE LAS LETRAS
         protected void btn_Aspectos_Click(object sender, EventArgs e)
@@ -779,6 +787,423 @@ namespace Numero
                 gvMespersonal.DataBind();
                 gvAniopersonal.DataSource = anioP.ObtenerAnioPersonall(anoPersonal);
                 gvAniopersonal.DataBind();
+            }
+        }
+
+
+        protected void btn_Periodo52_Click(object sender, EventArgs e)
+        {
+            string fechaNacimientoStr = txtFecha.Text;
+
+            if (DateTime.TryParseExact(fechaNacimientoStr, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime fechaNacimiento))
+            {
+                // Variables para almacenar los periodos
+                DateTime[] fechasInicio = new DateTime[7];
+                DateTime[] fechasFin = new DateTime[7];
+                DateTime[] fechasInicioMas1 = new DateTime[7];
+                // Define la duración de un periodo en días
+                int duracionPeriodo = 52;
+
+                // Calcula los periodos
+                for (int i = 0; i < 7; i++)
+                {
+                    // Calcula la fecha de inicio del periodo
+                    fechasInicio[i] = fechaNacimiento.AddDays(i * duracionPeriodo);
+                    fechasInicioMas1[i] = fechaNacimiento.AddDays(i * duracionPeriodo);
+                    fechasInicioMas1[i].AddDays(2);
+                    // Calcula la fecha de fin del periodo (sumando 52 días y ajustando por años bisiestos)
+                    fechasFin[i] = fechasInicio[i].AddDays(duracionPeriodo);
+
+                    if (EsBisiesto(fechasFin[i].Year) && fechasInicio[i].Month == 2 && fechasInicio[i].Day == 29)
+                    {
+                        fechasFin[i] = fechasFin[i].AddDays(1);
+
+                    }
+                    // Muestra los resultados
+                    ///MessageBox.Show($"Periodo {i + 1}: Desde {fechasInicio[i].ToString("dd/MM/yyyy")} hasta {fechasFin[i].ToString("dd/MM/yyyy")}", "Mensaje");
+                    if (i == 0)
+                    {
+                        lbl_Periodos52.Text += $"Periodo {i + 1}: Desde {fechasInicio[i].ToString("dd/MM/yyyy")} hasta {fechasFin[i].ToString("dd/MM/yyyy")} <br>";
+                    }
+                    else
+                    {
+                        lbl_Periodos52.Text += $"Periodo {i + 1}: Desde {fechasInicio[i].ToString("dd/MM/yyyy")} hasta {fechasFin[i].ToString("dd/MM/yyyy")} <br>";
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Formato de fecha no válido. Por favor, ingresa la fecha en formato DD/MM/AAAA.", "Mensaje");
+            }
+        }
+
+        protected void btnVibracionCasas_Click(object sender, EventArgs e)
+        {
+
+            string input2 = tbCasas.Text.ToLower().Trim();
+            // Dividir la cadena en nombres y números
+            string[] nombresYNumeros = input2.Split(' ');
+            // Variables para contar la frecuencia de cada letra de la "a" a la "z"
+            int[] frecuenciaLetras2 = new int[26];
+            // Variables para contar la frecuencia de números del 1 al 9
+            int[] frecuenciaNumeros2 = new int[9];
+
+            int totalLetras = 0;
+            int TotalNumeros = 0;
+            int Total = 0;
+
+            foreach (string nombreONumero in nombresYNumeros)
+            {
+                foreach (var caracter in nombreONumero)
+                {
+                    if (char.IsLetter(caracter))
+                    {
+                        // Si es una letra, calcular el índice correspondiente y actualizar la frecuencia
+                        int indiceLetra = (int)caracter - 97;
+                        frecuenciaLetras2[indiceLetra]++;
+                        totalLetras += indiceLetra +1 ;
+                    }
+                    else if (char.IsDigit(caracter))
+                    {
+                        int indicereal = (int)caracter - 49;
+                        if (indicereal != -1)
+                        {
+                            frecuenciaNumeros2[indicereal]++;
+                            TotalNumeros += indicereal + 1;
+                           /// MessageBox.Show("El numero es :" + (indicereal + 1));
+                        }
+                        else
+                        {
+                            ///MessageBox.Show("El numero es :" + (indicereal + 1)); // SI USO EL 0 SE VA DE RANGO EL indice en el vector 
+                        }
+                    }
+                }
+            }
+            int numeros = ReducirADigito(TotalNumeros);
+            int letras = ReducirADigito(totalLetras);
+            Total = ReducirADigito(numeros + letras);
+            NegocioVibracionCasa casa = new NegocioVibracionCasa();
+
+            gvVibracionCasas.DataSource = casa.ObtenerVibracionCasaPlanetaa(Total);
+            gvVibracionCasas.DataBind();
+        }
+
+        protected void btnHerencia_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Ingresa hasta 3 nombres separados por un espacio:");
+            string input = tbNombre.Text.ToLower().Trim();
+            string[] nombres = input.Split(' ');
+            int[] frecuenciaLetras = new int[26];
+
+
+            int PrimerasLetras = 0;
+            for (int aux = 0; aux < frecuenciaLetras.Length; aux++)
+            {
+                frecuenciaLetras[aux] = 0;
+            }
+
+                ///-------------------------------HERENCIA --------------------------------
+                ///SUMAMOS LOS 2 APELLIDOS Y LOS REDUCIMOS, VYDRA + MAIDANA
+                string input2 = tbApellidos.Text.ToLower().Trim();
+                string[] Apellidos = input2.Split(' ');
+                int[] frecuenciaLetras2 = new int[26];
+                int Here = 0;    
+
+                if (Apellidos.Length <= 2)
+                {
+                    // Iterar sobre cada nombre
+                    foreach (string apellido in Apellidos)
+                    {
+                        /// MessageBox.Show($"Letras del nombre {nombre}:", "Mensaje");
+                        char primerletra = apellido[0];
+                        int indiceLetra1 = (int)primerletra - 97;
+                        PrimerasLetras += indiceLetra1 + 1; // es +1 porque quiero el valor real 
+
+                        foreach (var letra in apellido)
+                        {
+                            int indicereal = (int)letra - 97;
+                            frecuenciaLetras[indicereal]++;
+                            Here += indicereal + 1;
+                       //     MessageBox.Show("La letra es :" + letra);
+
+                        }
+                    }
+                /*
+                for (int aux = 0; aux < frecuenciaLetras.Length; aux++)
+                {
+                    frecuenciaLetras[aux] += frecuenciaLetras2[aux];
+                    if (frecuenciaLetras[aux] != 0)
+                    {
+                        lblResultado.Text += "La letra: " + (char)(aux + 97) + " Se repite:" + frecuenciaLetras[aux] + " Veces <br/> ";
+                    }
+                }
+                */
+
+
+                int Heren = ReducirADigito(Here);
+
+                NegocioHerencia here = new NegocioHerencia();
+                gvHerencia.DataSource = here.ObtenerHerenciaa(Heren);
+                gvHerencia.DataBind();
+                lblResultado.Text += $"{Heren} <br/> ";
+
+            }
+                else
+                {
+                    MessageBox.Show("Has ingresado mas de 2 apellidos  Por favor, intenta nuevamente.", "Mensaje");
+                }
+            
+            
+        }
+
+        protected void btnRetoCapsula_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Ingresa hasta 3 nombres separados por un espacio:");
+            string input = tbNombre.Text.ToLower().Trim();
+            string[] nombres = input.Split(' ');
+            int[] frecuenciaLetras = new int[26];
+            int primerVocal = -1;
+            int ultimaVocal = -1;
+
+            int PrimerasLetras = 0;
+            for (int aux = 0; aux < frecuenciaLetras.Length; aux++)
+            {
+                frecuenciaLetras[aux] = 0;
+            }
+            // Verificar si se ingresaron hasta 3 nombres
+            if (nombres.Length <= 3)
+            {
+                // Iterar sobre cada nombre
+                foreach (string nombre in nombres)
+                {
+                    /// MessageBox.Show($"Letras del nombre {nombre}:", "Mensaje");
+                    char primerletra = nombre[0];
+                    int indiceLetra1 = (int)primerletra - 97;
+                    PrimerasLetras += indiceLetra1 + 1; // es +1 porque quiero el valor real 
+
+                    foreach (var letra in nombre)
+                    {
+                        int indicereal = (int)letra - 97;
+                        frecuenciaLetras[indicereal]++;
+                        //MessageBox.Show("La letra es :" + letra);
+
+                        if (indicereal == 0 || indicereal == 4 || indicereal == 8 || indicereal == 14 || indicereal == 20)
+                        {
+                            if (primerVocal == -1)
+                            {
+                                primerVocal = indicereal + 1;
+                            }
+                            ///ultimaVocal = indicereal + 1;
+                        }
+                    }
+                    ///  MessageBox.Show($"Total de letras en {nombre}: {nombre.Length}", "Mensaje");
+                }
+
+                ///-------------------------------HERENCIA --------------------------------
+                ///SUMAMOS LOS 2 APELLIDOS Y LOS REDUCIMOS, VYDRA + MAIDANA
+                string input2 = tbApellidos.Text.ToLower().Trim();
+                string[] Apellidos = input2.Split(' ');
+                int[] frecuenciaLetras2 = new int[26];
+
+                if (Apellidos.Length <= 2)
+                {
+                    // Iterar sobre cada nombre
+                    foreach (string apellido in Apellidos)
+                    {
+                        /// MessageBox.Show($"Letras del nombre {nombre}:", "Mensaje");
+                        char primerletra = apellido[0];
+                        int indiceLetra1 = (int)primerletra - 97;
+                        PrimerasLetras += indiceLetra1 + 1; // es +1 porque quiero el valor real 
+
+                        foreach (var letra in apellido)
+                        {
+                            int indicereal = (int)letra - 97;
+                            frecuenciaLetras[indicereal]++;
+                           // MessageBox.Show("La letra es :" + letra);
+
+                            if (indicereal == 0 || indicereal == 4 || indicereal == 8 || indicereal == 14 || indicereal == 20)
+                            {
+                                ultimaVocal = indicereal + 1;
+                            }
+                        }
+                    }
+
+                    for (int aux = 0; aux < frecuenciaLetras.Length; aux++)
+                    {
+                        frecuenciaLetras[aux] += frecuenciaLetras2[aux];
+                        if (frecuenciaLetras[aux] != 0)
+                        {
+                            lblResultado.Text += "La letra: " + (char)(aux + 97) + " Se repite:" + frecuenciaLetras[aux] + " Veces <br/> ";
+                        }
+                    }
+
+                    lblResultado.Text += $"El Número de la primer vocal es: {primerVocal} <br/>";
+                    lblResultado.Text += $"El Número de la ultima vocal es: {ultimaVocal} <br/>";
+
+                    // Calcular el número de vibración del reto
+                    int numeroVibracionReto = Math.Abs(primerVocal - ultimaVocal);
+                    lblResultado.Text += $"Número de vibración del reto: {numeroVibracionReto} <br/>";
+                    int Capsu = ReducirADigito(PrimerasLetras);
+                    // Calcular el número de cápsula
+                    lblResultado.Text += $"Número de cápsula: {ReducirADigito(PrimerasLetras)} <br/>";
+                    MessageBox.Show("Reto es :" + numeroVibracionReto);
+                    MessageBox.Show("Capsula es :" + Capsu);
+
+                    NegocioReto reto = new NegocioReto();
+                    NegocioCapsula capsu = new NegocioCapsula();
+                    gvCapsula.DataSource = capsu.ObtenerCapsulaa(Capsu);
+                    gvCapsula.DataBind();
+                    gvReto.DataSource = reto.ObtenerRetoo(numeroVibracionReto);
+                    gvReto.DataBind();
+
+                }
+                else
+                {
+                    MessageBox.Show("Has ingresado mas de 2 apellidos  Por favor, intenta nuevamente.", "Mensaje");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Has ingresado mas de 3 nombres Por favor, intenta nuevamente.", "Mensaje");
+            }
+        }
+
+        protected void btn_VibracionesAnuales_Click(object sender, EventArgs e)
+        {
+
+            //Ingresar fecha de nacimiento, nombre y apellido
+            string fechaNacimientoStr = txtFecha.Text.ToLower().Trim();
+            string nombreCompleto = tbNombre.Text.ToLower().Trim() + " " + tbApellidos.Text.ToLower().Trim();
+
+            int IndiTrans = 0;
+            int Column = 0;
+            string[] nombres = nombreCompleto.Split(' ');
+
+            int CantNombres = nombres.Length;
+            // Variables para almacenar las vibraciones anuales sin reducir
+            int[,] vibracionesAnuales = new int[300, CantNombres]; // Matriz de 100 filas y 26 columnas
+            int[] vibracionAnualFinal = new int[300];
+
+            // Dividir la fecha en día, mes y año
+            string[] partesFecha = fechaNacimientoStr.Split('/');
+
+            // Convertir a números enteros
+            int dia = Convert.ToInt32(partesFecha[0]);
+            int mes = Convert.ToInt32(partesFecha[1]);
+            int anio = Convert.ToInt32(partesFecha[2]);
+
+
+            // Inicializar la matriz a cero
+            for (int i = 0; i < 300; i++)
+            {
+                for (int j = 0; j < CantNombres; j++)
+                {
+                    vibracionesAnuales[i, j] = 0;
+                }
+            }
+
+            // Inicializar el vector a cero
+            for (int i = 0; i < 300; i++)
+            {
+                vibracionAnualFinal[i] = 0;
+            }
+
+            if (DateTime.TryParseExact(fechaNacimientoStr, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime fechaNacimiento))
+            {
+
+                // Obtener el año de nacimiento
+                int añoNacimiento = fechaNacimiento.Year;
+                foreach (string nom in nombres)
+                {
+
+                    foreach (char letra in nom)
+                    {
+                        /// MessageBox.Show($"Letras del nombre {nombre}:", "Mensaje");
+                        char primerletra = letra;
+                        int indiceLetra1 = (int)primerletra - 96;
+
+                        for (int i = 0; i < indiceLetra1; i++)
+                        {
+                            vibracionesAnuales[IndiTrans, Column] = indiceLetra1;
+                            IndiTrans++;//me guardo el indice que sigue en la letra 
+                        }
+
+                    }
+                    Column++;///cambio de nombre
+                    IndiTrans = 0;
+                }
+
+                ///esto es para que vuelva a reescribir cada nombre en cada una de las columnas de la matriz para hacer mas años, sino llego a los 50 nomas
+                Column = 0;
+                int aux = -1;
+                int primerCero = -1;
+
+                foreach (string nom in nombres)
+                {
+
+                    foreach (char letra in nom)
+                    {
+                        /// MessageBox.Show($"Letras del nombre {nombre}:", "Mensaje");
+                        char primerletra = letra;
+                        int indiceLetra1 = (int)primerletra - 96;
+
+                        for (int i = 0; i < 100; i++)
+                        {
+
+                            if (vibracionesAnuales[i, Column] == 0)
+                            {
+                                if (aux == -1)
+                                {
+                                    primerCero = i;
+                                    vibracionesAnuales[primerCero, Column] = indiceLetra1;
+                                    aux++;
+                                }
+                            }
+
+                        }
+
+
+                        for (int i = 0; i < indiceLetra1; i++)
+                        {
+
+                            vibracionesAnuales[primerCero, Column] = indiceLetra1;
+                            primerCero++;//me guardo el indice que sigue en la letra 
+                        }
+
+                    }
+                    Column++;///cambio de nombre
+                    aux = -1;
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Formato de fecha no válido. Por favor, ingresa la fecha en formato DD/MM/AAAA.", "Mensaje");
+            }
+
+            for (int i = 0; i < 300; i++)
+            {
+                int sumaFila = 0;
+
+                for (int j = 0; j < CantNombres; j++)
+                {
+                    sumaFila += vibracionesAnuales[i, j];
+                }
+
+                vibracionAnualFinal[i] = sumaFila;
+            }
+
+            for (int i = 0; i < 100; i++)
+            {
+                if (vibracionAnualFinal[i] != 0)
+                {
+                    int edad = i + 1;
+                    int vibracionFinal = vibracionAnualFinal[i];
+
+                   // MessageBox.Show($"Año {anio + i + 1}: Edad = {edad}, Vibración Anual Final = {vibracionFinal}", "Información");
+                    lbl_VibracionesAnuales.Text += $"Año {anio + i + 1}: Edad = {edad}, Vibración Anual Final = {vibracionFinal} <br>";
+                  }
             }
         }
     }
