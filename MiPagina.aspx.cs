@@ -489,121 +489,17 @@ namespace Numero
             }
         }
 
-        protected void btnAuto_Click(object sender, EventArgs e)
-        {
-
-            //Ingresar nombre
-            string nombreCompleto = tbNombre.Text.ToLower().Trim() + " " + tbApellidos.Text.ToLower().Trim();
-            string[] nombres = nombreCompleto.Split(' ');
-            int CantNombres = nombres.Length;
-
-           
-            // Variables para calcular el número de vibración del reto
-            int primerVocal = -1;
-            int ultimaVocal = -1;
-            int PrimerConso = -1;
-            int UltimaConso = -1;
-
-            // Variables para contar la frecuencia de cada letra de la "a" a la "z"
-            int[,] frecuenciaLetras1 = new int[26, CantNombres];
-
-            // Inicializar la matriz a cero
-            for (int i = 0; i < 26; i++)
-            {
-                for (int j = 0; j < CantNombres; j++)
-                {
-                    frecuenciaLetras1[i, j] = 0;
-                }
-            }
-
-       
-            int aux1 = 0;
-            // Iterar sobre cada nombre
-            int SumaConso = 0;
-            int SumaVoc = 0;
-            int SumaTot = 0;
-     
-            int[] SumaVocales= new int [CantNombres];
-            for (int i = 0; i < CantNombres; i++)
-            {
-                    SumaVocales[i] = 0;
-            }
-
-            foreach (string nombre in nombres)
-            {
-
-                foreach (var letra in nombre)
-                {
-                    //LA MATRIZ ME GUARDA EN CADA COLUMNA LAS LETRAS QUE APARECEN EN EL NOMBRE REPARTIDAS EN EL ABECEDARIO
-                    // SUMANDO UNO EN LA POSICION CORRESPONDIENTE LLEGANDO A 26 
-                    int indicereal = (int)letra - 97;
-                    frecuenciaLetras1[indicereal, aux1]++;
-                    MessageBox.Show("La letra es :" + letra);
-
-                    if (indicereal == 0 || indicereal == 4 || indicereal == 8 || indicereal == 14 || indicereal == 20)
-                    {
-                        if (primerVocal == -1)
-                        {
-                            primerVocal = indicereal + 1;
-                        }
-                        ultimaVocal = indicereal + 1;
-                        SumaVoc += (indicereal + 1);
-                        SumaVocales[aux1] += indicereal + 1;
-                    }
-                    else
-                    {
-                        if (PrimerConso == -1)
-                        {
-                            PrimerConso = indicereal + 1;
-                        }
-                        UltimaConso = indicereal + 1;
-                        SumaConso += (indicereal + 1);
-                    }
-                    
-                }
-                aux1++;
-                
-                ///ACA QUERRIA QUE ME MUESTRE TODOS LAS LETRAS DE CADA UNO DE LOS NOMBRES O ME LOS GUARDE
-                ///  MessageBox.Show($"Total de letras en {nombre}: {nombre.Length}", "Mensaje");
-            }
-            SumaTot = SumaVoc + SumaConso;
-            int VocRed = ReducirADigito(SumaVoc);
-            int ConsoRed = ReducirADigito(SumaConso);
-            int TotRed=ReducirADigito(SumaTot);
-
-            ///PERSONALIDAD INTERNA (AUTO MOTIVACION)
-            ///PERSONALIDAD EXTERNA (AUTO IMAGEN)
-            ///TALENTO AUTO EXPRESION
-            MessageBox.Show($"SUMA VOCALES {SumaVoc}  VOCALES REDUCIDAS{VocRed}", "Mensaje");
-            MessageBox.Show($"SUMA CONSO {SumaConso}  CONSO REDUCIDAS{ConsoRed}", "Mensaje");
-            MessageBox.Show($"SUMA TOT {SumaTot}  TOT REDUCIDAS{TotRed}", "Mensaje");
-
-            ///Reto Auto motivacion Primer vocal - Ultima vocal
-            ///Reto Auto imagen  primer conso - Ultima conso 
-            ///Reto de Auto expresion suma de los 2 anteriores. 
-            int RetoMoti = Math.Abs(ReducirADigito(primerVocal - ultimaVocal));
-            int RetoIma = Math.Abs(ReducirADigito(PrimerConso - UltimaConso));
-            int RetoExp = ReducirADigito(RetoMoti + RetoIma);
-            MessageBox.Show($"Reto motivacion {RetoMoti}  ", "Mensaje");
-            MessageBox.Show($"Reto Imagen {RetoIma}  ", "Mensaje");
-            MessageBox.Show($"Reto Expresion {RetoExp}  ", "Mensaje");
-
-            for (int i = 0; i < CantNombres; i++)
-            {
-                MessageBox.Show($"SUMA DE LAS VOCALES DEL NOMBRE/APELLIDO EN LA POSICION {i+1}   YA REDUCIDO DA:{ReducirADigito(SumaVocales[i])}  ", "Mensaje");
-            }
-
-        }
-
+        /// ASPECTO DE LAS LETRAS
         protected void btn_Aspectos_Click(object sender, EventArgs e)
         {
-
+            ///LETRA - FISICO - AFECTIVO - ESPIRITUAL
             NegocioAspecto negocio = new Negocio.NegocioAspecto();
             char A = 'A';
             gvAspectodelasletras.DataSource = negocio.ObtenerAspectodelasletrass(A);
             gvAspectodelasletras.DataBind();
         }
 
+        ///AUTO EXPRESION, AUTO MOTIVACION, AUTO IMAGEN
         protected void btn_Autoexpresion_Click(object sender, EventArgs e)
         { //Ingresar nombre
             string nombreCompleto = tbNombre.Text.ToLower().Trim() + " " + tbApellidos.Text.ToLower().Trim();
@@ -628,7 +524,6 @@ namespace Numero
                     frecuenciaLetras1[i, j] = 0;
                 }
             }
-
 
             int aux1 = 0;
             // Iterar sobre cada nombre
@@ -684,19 +579,6 @@ namespace Numero
             int ConsoRed = ReducirADigito(SumaConso);
             int TotRed = ReducirADigito(SumaTot);
 
-            ///PERSONALIDAD INTERNA (AUTO MOTIVACION)
-            ///PERSONALIDAD EXTERNA (AUTO IMAGEN)
-            ///TALENTO AUTO EXPRESION
-            ///
-            /*
-            MessageBox.Show($"SUMA VOCALES {SumaVoc}  VOCALES REDUCIDAS{VocRed}", "Mensaje");
-            MessageBox.Show($"SUMA CONSO {SumaConso}  CONSO REDUCIDAS{ConsoRed}", "Mensaje");
-            MessageBox.Show($"SUMA TOT {SumaTot}  TOT REDUCIDAS{TotRed}", "Mensaje");
-            */
-            ///Reto Auto motivacion Primer vocal - Ultima vocal
-            ///Reto Auto imagen  primer conso - Ultima conso 
-            ///Reto de Auto expresion suma de los 2 anteriores. 
-
             NegocioExpresion expre = new NegocioExpresion();
             NegocioImagen ima = new NegocioImagen();
             NegocioMotivacion moti = new NegocioMotivacion();
@@ -705,29 +587,199 @@ namespace Numero
             int Ima = Math.Abs(PrimerConso - UltimaConso);
             int RetoIma = ReducirADigito(Ima);
             int RetoExp = ReducirADigito(RetoMoti + RetoIma);
-
+            /*
             MessageBox.Show($"Reto Expresion {RetoExp}  ", "Mensaje");
             MessageBox.Show($"Reto motivacion {RetoMoti}  ", "Mensaje");
             MessageBox.Show($"Reto Imagen {RetoIma}  ", "Mensaje");
-
+            */
             gvAutoexpresion.DataSource = expre.ObtenerAutoExpresionn(RetoExp);
             gvAutoexpresion.DataBind();
             gvAutoimagen.DataSource = ima.ObtenerAutoImagenn(RetoIma);
             gvAutoimagen.DataBind();
             gvAutomotivacion.DataSource = moti.ObtenerAutoMotivacionn(RetoMoti);
             gvAutomotivacion.DataBind();
+        }
 
-            /*
-            MessageBox.Show($"Reto motivacion {RetoMoti}  ", "Mensaje");
-            MessageBox.Show($"Reto Imagen {RetoIma}  ", "Mensaje");
-            MessageBox.Show($"Reto Expresion {RetoExp}  ", "Mensaje");
-            
-            for (int i = 0; i < CantNombres; i++)
+        ///NUMERO DE ALMA
+        protected void btn_Numeroalma_Click(object sender, EventArgs e)
+        {
+            ///----------------------- PARA OBTENER LOS DATOS A TRAVES DE LA FECHA DE NACIMIENTO ---------------------------------
+            // Obtener la fecha ingresada
+            string fechaIngresada = txtFecha.Text;
+
+            // Dividir la fecha en día, mes y año
+            string[] partesFecha = fechaIngresada.Split('/');
+
+            if (partesFecha.Length == 3)
             {
+                // Convertir a números enteros
+                int dia = Convert.ToInt32(partesFecha[0]);
+                int mes = Convert.ToInt32(partesFecha[1]);
+                int anio = Convert.ToInt32(partesFecha[2]);
 
-                MessageBox.Show($"SUMA DE LAS VOCALES DEL NOMBRE/APELLIDO EN LA POSICION {i + 1}   YA REDUCIDO DA:{ReducirADigito(SumaVocales[i])}  ", "Mensaje");
+                // Por ejemplo, mostrarlos en la consola para verificar
+                ///MessageBox.Show($"Día: {dia}, Mes: {mes}, Año: {anio}","Mensaje");
+                int añopersonal = dia + mes + anio;
+
+                /// --------------------NUMERO DE ALMA----------------------------
+                int sumaDigitos = SumarDigitos(dia) + SumarDigitos(mes) + SumarDigitos(anio);
+
+                ///ACA ES DONDE SALE EL NUMERO MAESTRO
+                MessageBox.Show($"Suma de digitos - POSIBLE NUMERO MAESTRO:" + sumaDigitos, "Mensaje");
+
+                // Reducir la suma a un solo dígito - NUMERO DE ALMA
+                int resultadoFinal = ReducirADigito(sumaDigitos);
+
+                NegocioDestino desti = new NegocioDestino();
+                gvNumerodealma.DataSource = desti.ObtenerDestinoo(resultadoFinal);
+                gvNumerodealma.DataBind();
+
+                // Mostrar el resultado en la consola para verificar
+                MessageBox.Show($"Resultado Final: " + resultadoFinal, "Mensaje");
             }
-            */
+        }
+
+        protected void btnDesafios_Click(object sender, EventArgs e)
+        {
+            ///----------------------- PARA OBTENER LOS DATOS A TRAVES DE LA FECHA DE NACIMIENTO ---------------------------------
+            // Obtener la fecha ingresada
+            string fechaIngresada = txtFecha.Text;
+
+            // Dividir la fecha en día, mes y año
+            string[] partesFecha = fechaIngresada.Split('/');
+
+            if (partesFecha.Length == 3)
+            {
+                // Convertir a números enteros
+                int dia = Convert.ToInt32(partesFecha[0]);
+                int mes = Convert.ToInt32(partesFecha[1]);
+                int anio = Convert.ToInt32(partesFecha[2]);
+
+                ///--------------- DESAFIOS DE LA VIDA ----------------------
+                ///1ER Desafio 0-28 anios - 2DO Desafio 29-34 anios - 3ER Desafio 35-49 anios - 4TO Desafio 50-final xd
+                ///// Calcular el 1er Desafío
+                int primerDesafio = Math.Abs(ReducirADigito(mes) - ReducirADigito(dia));
+                // MessageBox.Show("Primer Desafio:" + primerDesafio, "Mensaje");
+                // Calcular el 2do Desafío
+                int segundoDesafio = Math.Abs(ReducirADigito(dia) - ReducirADigito(ReducirADigito(anio)));
+                // MessageBox.Show("Segundo Desafio:" + segundoDesafio, "Mensaje");
+                // Calcular el 3er Desafío
+                int tercerDesafio = Math.Abs(primerDesafio - segundoDesafio);
+                // MessageBox.Show("Tercer Desafio:" + tercerDesafio, "Mensaje");
+                // Calcular el 4to Desafío
+                int cuartoDesafio = Math.Abs(ReducirADigito(mes) - ReducirADigito(ReducirADigito(anio)));
+                // MessageBox.Show("Cuarto Desafio:" + cuartoDesafio, "Mensaje");
+
+                NegocioDesafio desa = new NegocioDesafio();
+                gvPrimerdesafio.DataSource = desa.ObtenerDesafioo(primerDesafio);
+                gvPrimerdesafio.DataBind();
+                gvSegundodesafio.DataSource = desa.ObtenerDesafioo(segundoDesafio);
+                gvSegundodesafio.DataBind();
+                gvTercerdesafio.DataSource = desa.ObtenerDesafioo(tercerDesafio);
+                gvTercerdesafio.DataBind();
+                gvCuartodesafio.DataSource = desa.ObtenerDesafioo(cuartoDesafio);
+                gvCuartodesafio.DataBind();
+
+
+            }
+        }
+
+        protected void btnPinaculos_Click(object sender, EventArgs e)
+        {
+            ///----------------------- PARA OBTENER LOS DATOS A TRAVES DE LA FECHA DE NACIMIENTO ---------------------------------
+            string fechaIngresada = txtFecha.Text;
+            string[] partesFecha = fechaIngresada.Split('/');
+
+            if (partesFecha.Length == 3)
+            {
+                // Convertir a números enteros
+                int dia = Convert.ToInt32(partesFecha[0]);
+                int mes = Convert.ToInt32(partesFecha[1]);
+                int anio = Convert.ToInt32(partesFecha[2]);
+
+                int añopersonal = dia + mes + anio;
+
+                /// --------------------NUMERO DE ALMA----------------------------
+                int sumaDigitos = SumarDigitos(dia) + SumarDigitos(mes) + SumarDigitos(anio);
+
+                // Reducir la suma a un solo dígito - NUMERO DE ALMA
+                int resultadoFinal = ReducirADigito(sumaDigitos);
+
+                // Calcular el 1er Pináculo
+                int primerPinaculo = ReducirADigito(mes + dia);
+
+                // Calcular el Rango de Edad para el 1er Pináculo
+                int rangoEdadPrimerPinaculo = 36 - resultadoFinal;
+
+                // Calcular el 2do Pináculo
+                int segundoPinaculo = ReducirADigito(dia + ReducirADigito(anio));
+
+                // Calcular el Rango de Edad para el 2do Pináculo
+                int rangoEdadSegundoPinaculo = rangoEdadPrimerPinaculo + 9;
+
+                // Calcular el 3er Pináculo
+                int tercerPinaculo = ReducirADigito(primerPinaculo + segundoPinaculo);
+
+                // Calcular el Rango de Edad para el 3er Pináculo
+                int rangoEdadTercerPinaculo = rangoEdadSegundoPinaculo + 9;
+
+                // Calcular el 4to Pináculo
+                int cuartoPinaculo = ReducirADigito(mes + ReducirADigito(anio));
+
+                // Calcular el Rango de Edad para el 4to Pináculo
+                int rangoEdadCuartoPinaculo = rangoEdadTercerPinaculo + 9;
+
+                //  Mostrar los resultados en la consola para verificar
+                //  MessageBox.Show($"1er Pináculo: {primerPinaculo}" + $" / Rango de Edad para 1er Pináculo: {rangoEdadPrimerPinaculo}", "Mensaje");
+                //  MessageBox.Show($"2do Pináculo: {segundoPinaculo}" + $" / Rango de Edad para 2do Pináculo: {rangoEdadSegundoPinaculo}", "Mensaje");
+                //  MessageBox.Show($"3er Pináculo: {tercerPinaculo}" + $" / Rango de Edad para 3er Pináculo: {rangoEdadTercerPinaculo}", "Mensaje");
+                //  MessageBox.Show($"4to Pináculo: {cuartoPinaculo}" + $" / Rango de Edad para 4to Pináculo: {rangoEdadCuartoPinaculo}", "Mensaje");
+                NegocioPinaculo pina = new NegocioPinaculo();
+                gvPrimerpinaculo.DataSource = pina.ObtenerPinaculoo(primerPinaculo);
+                gvPrimerpinaculo.DataBind();
+                gvSegundopinaculo.DataSource = pina.ObtenerPinaculoo(segundoPinaculo);
+                gvSegundopinaculo.DataBind();
+                gvTercerpinaculo.DataSource = pina.ObtenerPinaculoo(tercerPinaculo);
+                gvTercerpinaculo.DataBind();
+                gvCuartopinaculo.DataSource = pina.ObtenerPinaculoo(cuartoPinaculo);
+                gvCuartopinaculo.DataBind();
+            }
+        }
+
+        protected void btnPersonal_Click(object sender, EventArgs e)
+        {
+
+            string fechaIngresada = txtFecha.Text;
+            string[] partesFecha = fechaIngresada.Split('/');
+
+            if (partesFecha.Length == 3)
+            {
+                // Convertir a números enteros
+                int dia = ReducirADigito( Convert.ToInt32(partesFecha[0]));
+                int mes = ReducirADigito(Convert.ToInt32(partesFecha[1]));
+                int anio = ReducirADigito( Convert.ToInt32(partesFecha[2]));
+               // MessageBox.Show($"dia mes anio :" + dia + " " + mes + " " + anio, "Mensaje");
+                ///------------------AÑO, MES Y DIA PERSONAL ---------------------------------
+                ///// Calcular la suma de día, mes y año sin reducir (Año Personal)
+                int anoPersonal = ReducirADigito( dia+mes+anio);
+
+                // Calcular el Mes Personal
+                int mesPersonal = ReducirADigito(anoPersonal + mes);
+
+                // Calcular el Día Personal
+                int diaPersonal = ReducirADigito( anoPersonal + mesPersonal + dia);
+               // MessageBox.Show($"diaP mesP anioP :" + diaPersonal + " " + mesPersonal + " " + anoPersonal, "Mensaje");
+                NegocioDiaPersonal diaP = new NegocioDiaPersonal();
+                NegocioMesPersonal mesP = new NegocioMesPersonal();
+                NegocioAnioPersonal anioP = new NegocioAnioPersonal();
+
+                gvDiapersonal.DataSource = diaP.ObtenerDiaPersonall(diaPersonal);
+                gvDiapersonal.DataBind();
+                gvMespersonal.DataSource = mesP.ObtenerMesPersonall(mesPersonal);
+                gvMespersonal.DataBind();
+                gvAniopersonal.DataSource = anioP.ObtenerAnioPersonall(anoPersonal);
+                gvAniopersonal.DataBind();
+            }
         }
     }
 }

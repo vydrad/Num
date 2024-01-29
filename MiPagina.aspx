@@ -84,6 +84,30 @@
         .auto-style19 {
             text-align: center;
         }
+        .auto-style20 {
+            text-align: right;
+            width: 375px;
+            height: 25px;
+        }
+        .auto-style21 {
+            height: 25px;
+            width: 881px;
+        }
+        .auto-style22 {
+            height: 25px;
+        }
+        .auto-style23 {
+            text-align: right;
+            height: 58px;
+            width: 375px;
+        }
+        .auto-style24 {
+            height: 58px;
+            width: 881px;
+        }
+        .auto-style25 {
+            height: 58px;
+        }
     </style>
 </head>
 <body>
@@ -167,8 +191,7 @@
             <tr>
                 <td class="auto-style13">&nbsp;</td>
                 <td class="auto-style10">
-                    <asp:Button ID="btnAuto" runat="server" OnClick="btnAuto_Click" Text="Auto motivacion/imagen/expresion" />
-                </td>
+                    &nbsp;</td>
                 <td class="auto-style3">&nbsp;</td>
             </tr>
             <tr>
@@ -215,12 +238,10 @@
                     <asp:GridView ID="gvAspectodelasletras" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
                         <AlternatingRowStyle BackColor="White" />
                         <Columns>
-                            <asp:BoundField DataField="A" HeaderText="Aspecto de la letra A" />
-                            <asp:BoundField DataField="B" HeaderText="Aspecto de la letra B" />
-                            <asp:BoundField DataField="C" HeaderText="Aspecto de la letra C" />
-                            <asp:BoundField DataField="D" HeaderText="Aspecto de la letra D" />
-                            <asp:BoundField DataField="E" HeaderText="Aspecto de la letra E" />
-                            <asp:BoundField DataField="F" HeaderText="Aspecto de la letra F" />
+                            <asp:BoundField DataField="Letra" HeaderText="Letra" />
+                            <asp:BoundField DataField="Fisico" HeaderText="Fisico" />
+                            <asp:BoundField DataField="Afectivo" HeaderText="Afectivo" />
+                            <asp:BoundField DataField="Espiritual" HeaderText="Espiritual" />
                         </Columns>
                         <EditRowStyle BackColor="#7C6F57" />
                         <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
@@ -243,29 +264,23 @@
                             </div>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            A:
-                            <asp:Label ID="ALabel" runat="server" Text='<%# Eval("A") %>' />
+                            Letra:
+                            <asp:Label ID="ALabel" runat="server" Text='<%# Eval("Letra") %>' />
                             <br />
-                            B:
-                            <asp:Label ID="BLabel" runat="server" Text='<%# Eval("B") %>' />
+                            Fisico:
+                            <asp:Label ID="BLabel" runat="server" Text='<%# Eval("Fisico") %>' />
                             <br />
-                            C:
-                            <asp:Label ID="CLabel" runat="server" Text='<%# Eval("C") %>' />
+                            Afectivo:
+                            <asp:Label ID="CLabel" runat="server" Text='<%# Eval("Afectivo") %>' />
                             <br />
-                            D:
-                            <asp:Label ID="DLabel" runat="server" Text='<%# Eval("D") %>' />
-                            <br />
-                            E:
-                            <asp:Label ID="ELabel" runat="server" Text='<%# Eval("E") %>' />
-                            <br />
-                            F:
-                            <asp:Label ID="FLabel" runat="server" Text='<%# Eval("F") %>' />
+                            Espiritual:
+                            <asp:Label ID="DLabel" runat="server" Text='<%# Eval("Espiritual") %>' />
                             <br />
                             <br />
                         </ItemTemplate>
                         <SelectedItemStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
                     </asp:DataList>
-                    <asp:SqlDataSource ID="SqlDataSourceAspectos" runat="server" ConnectionString="<%$ ConnectionStrings:NumTantricaConnectionString %>" SelectCommand="SELECT [A], [B], [C], [D], [E], [F] FROM [Aspecto_de_las_letras]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSourceAspectos" runat="server" ConnectionString="<%$ ConnectionStrings:NumTantricaConnectionString %>" SelectCommand="SELECT * FROM [Aspecto_de_las_letras]"></asp:SqlDataSource>
                 </td>
                 <td>&nbsp;</td>
             </tr>
@@ -277,19 +292,409 @@
                 <td class="auto-style3"></td>
             </tr>
             <tr>
+                <td class="auto-style23">Numero de Alma o Destino<br />
+                </td>
+                <td class="auto-style24">
+                    <asp:Button ID="btn_Numeroalma" runat="server" OnClick="btn_Numeroalma_Click" Text="Numero de Alma" />
+                </td>
+                <td class="auto-style25"></td>
+            </tr>
+            <tr>
+                <td class="auto-style15"></td>
+                <td class="auto-style10">
+                    <asp:GridView ID="gvNumerodealma" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <Columns>
+                            <asp:TemplateField HeaderText="Número de Alma">
+                                <ItemTemplate>
+                                    <asp:Label ID="lbl_Numerodealma" runat="server" Text='<%# Bind("Info") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                </td>
+                <td class="auto-style3"></td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">
+                    <asp:Button ID="btnPersonal" runat="server" OnClick="btnPersonal_Click" Text="Año - Mes - Dia Personal" />
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">Año Personal</td>
+                <td class="auto-style10">
+                    <asp:GridView ID="gvAniopersonal" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <Columns>
+                            <asp:BoundField DataField="Anio_Personal" HeaderText="Año Personal" />
+                            <asp:BoundField DataField="Info" HeaderText="Información" />
+                        </Columns>
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">Mes Personal</td>
+                <td class="auto-style10">
+                    <asp:GridView ID="gvMespersonal" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">Dia Personal</td>
+                <td class="auto-style10">
+                    <asp:GridView ID="gvDiapersonal" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">
+                    <asp:Button ID="btnDesafios" runat="server" OnClick="btnDesafios_Click" Text="Averiguar Desafios" />
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">1er Desafio</td>
+                <td class="auto-style10">
+                    <asp:GridView ID="gvPrimerdesafio" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <Columns>
+                            <asp:BoundField DataField="Desafio" HeaderText="Desafio" />
+                            <asp:BoundField DataField="Info" HeaderText="Información" />
+                        </Columns>
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">2do Desafio</td>
+                <td class="auto-style10">
+                    <asp:GridView ID="gvSegundodesafio" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">3er Desafio</td>
+                <td class="auto-style10">
+                    <asp:GridView ID="gvTercerdesafio" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">4to Desafio</td>
+                <td class="auto-style10">
+                    <asp:GridView ID="gvCuartodesafio" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">
+                    <asp:Button ID="btnPinaculos" runat="server" OnClick="btnPinaculos_Click" Text="Averiguar Pinaculos" />
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">1er Pinaculo</td>
+                <td class="auto-style10">
+                    <asp:GridView ID="gvPrimerpinaculo" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                </td>
+                <td class="auto-style3"></td>
+            </tr>
+            <tr>
+                <td class="auto-style15">2do Pinaculo</td>
+                <td class="auto-style10">
+                    <asp:GridView ID="gvSegundopinaculo" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">3er Pinaculo</td>
+                <td class="auto-style10">
+                    <asp:GridView ID="gvTercerpinaculo" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">4to Pinaculo</td>
+                <td class="auto-style10">
+                    <asp:GridView ID="gvCuartopinaculo" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                        <EditRowStyle BackColor="#999999" />
+                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                    </asp:GridView>
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style20">1erPeriodo<br />
+                    2doPeriodo<br />
+                    3erPeriodo<br />
+                    4toPeriodo<br />
+                    5toPeriodo<br />
+                    6toPeriodo<br />
+                    7moPeriodo<br />
+                    de52 Dias</td>
+                <td class="auto-style21"></td>
+                <td class="auto-style22"></td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">Vibracion de las casas</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">Vibraciones Anuales<br />
+                </td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">Capsula</td>
+                <td class="auto-style10"></td>
+                <td class="auto-style3"></td>
+            </tr>
+            <tr>
+                <td class="auto-style15">Reto</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
+                <td class="auto-style15">&nbsp;</td>
+                <td class="auto-style10">
+                    <asp:Button ID="btn_Autoexpresion" runat="server" OnClick="btn_Autoexpresion_Click" Text="Auto Expresión - Auto Imagen - Auto Motivación " />
+                </td>
+                <td class="auto-style3">&nbsp;</td>
+            </tr>
+            <tr>
                 <td class="auto-style15">PERSONALIDAD INTERNA (AUTO MOTIVACION)<br />
                     PERSONALIDAD EXTERNA (AUTO IMAGEN)<br />
                     TALENTO
                     <br />
                     (AUTO EXPRESION)<br />
                 </td>
-                <td class="auto-style10">
-                    <asp:Button ID="btn_Autoexpresion" runat="server" OnClick="btn_Autoexpresion_Click" Text="Auto Expresión - Auto Imagen - Auto Motivación " />
-                </td>
-                <td class="auto-style3"></td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
                 <td class="auto-style10">
                     <asp:GridView ID="gvAutoexpresion" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
@@ -311,7 +716,7 @@
                         <SortedDescendingCellStyle BackColor="#FFFDF8" />
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
-                </td>
+                    </td>
                 <td class="auto-style3">&nbsp;</td>
             </tr>
             <tr>
@@ -364,81 +769,6 @@
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
                 </td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
-                <td class="auto-style3">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style15">&nbsp;</td>
-                <td class="auto-style10">&nbsp;</td>
                 <td class="auto-style3">&nbsp;</td>
             </tr>
             <tr>
