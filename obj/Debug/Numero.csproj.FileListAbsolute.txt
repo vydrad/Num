@@ -57,6 +57,8 @@ C:\Users\david\Desktop\Numerologia\Numero\obj\Debug\Numero.csproj.CoreCompileInp
 C:\Users\david\Desktop\Numerologia\Numero\obj\Debug\Numero.csproj.CopyComplete
 C:\Users\david\Desktop\Numerologia\Numero\obj\Debug\Numero.dll
 C:\Users\david\Desktop\Numerologia\Numero\obj\Debug\Numero.pdb
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\obj\Debug\Numero.csproj.AssemblyReference.cache
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\obj\Debug\Numero.csproj.CoreCompileInputs.cache
 C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\Numero.dll.config
 C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\Numero.dll
 C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\Numero.pdb
@@ -109,10 +111,14 @@ C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\roslyn\vbc.exe.config
 C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\roslyn\vbc.rsp
 C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\roslyn\VBCSCompiler.exe
 C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\Entidades.dll
 C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\Entidades.pdb
 C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\obj\Debug\Numero.csproj.AssemblyReference.cache
-C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\obj\Debug\Numero.csproj.CoreCompileInputs.cache
 C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\obj\Debug\Numero.csproj.CopyComplete
 C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\obj\Debug\Numero.dll
 C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\obj\Debug\Numero.pdb
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\Negocio.dll
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\Dao.dll
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\Negocio.pdb
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\bin\Dao.pdb

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using Negocio;
 
 namespace Numero
 {
@@ -594,6 +595,139 @@ namespace Numero
 
         }
 
+        protected void btn_Aspectos_Click(object sender, EventArgs e)
+        {
 
+            NegocioAspecto negocio = new Negocio.NegocioAspecto();
+            char A = 'A';
+            gvAspectodelasletras.DataSource = negocio.ObtenerAspectodelasletrass(A);
+            gvAspectodelasletras.DataBind();
+        }
+
+        protected void btn_Autoexpresion_Click(object sender, EventArgs e)
+        { //Ingresar nombre
+            string nombreCompleto = tbNombre.Text.ToLower().Trim() + " " + tbApellidos.Text.ToLower().Trim();
+            string[] nombres = nombreCompleto.Split(' ');
+            int CantNombres = nombres.Length;
+
+
+            // Variables para calcular el número de vibración del reto
+            int primerVocal = -1;
+            int ultimaVocal = -1;
+            int PrimerConso = -1;
+            int UltimaConso = -1;
+
+            // Variables para contar la frecuencia de cada letra de la "a" a la "z"
+            int[,] frecuenciaLetras1 = new int[26, CantNombres];
+
+            // Inicializar la matriz a cero
+            for (int i = 0; i < 26; i++)
+            {
+                for (int j = 0; j < CantNombres; j++)
+                {
+                    frecuenciaLetras1[i, j] = 0;
+                }
+            }
+
+
+            int aux1 = 0;
+            // Iterar sobre cada nombre
+            int SumaConso = 0;
+            int SumaVoc = 0;
+            int SumaTot = 0;
+
+            int[] SumaVocales = new int[CantNombres];
+            for (int i = 0; i < CantNombres; i++)
+            {
+                SumaVocales[i] = 0;
+            }
+
+            foreach (string nombre in nombres)
+            {
+
+                foreach (var letra in nombre)
+                {
+                    //LA MATRIZ ME GUARDA EN CADA COLUMNA LAS LETRAS QUE APARECEN EN EL NOMBRE REPARTIDAS EN EL ABECEDARIO
+                    // SUMANDO UNO EN LA POSICION CORRESPONDIENTE LLEGANDO A 26 
+                    int indicereal = (int)letra - 97;
+                    frecuenciaLetras1[indicereal, aux1]++;
+                    ///MessageBox.Show("La letra es :" + letra);
+
+                    if (indicereal == 0 || indicereal == 4 || indicereal == 8 || indicereal == 14 || indicereal == 20)
+                    {
+                        if (primerVocal == -1)
+                        {
+                            primerVocal = indicereal + 1;
+                        }
+                        ultimaVocal = indicereal + 1;
+                        SumaVoc += (indicereal + 1);
+                        SumaVocales[aux1] += indicereal + 1;
+                    }
+                    else
+                    {
+                        if (PrimerConso == -1)
+                        {
+                            PrimerConso = indicereal + 1;
+                        }
+                        UltimaConso = indicereal + 1;
+                        SumaConso += (indicereal + 1);
+                    }
+
+                }
+                aux1++;
+
+                ///ACA QUERRIA QUE ME MUESTRE TODOS LAS LETRAS DE CADA UNO DE LOS NOMBRES O ME LOS GUARDE
+                ///  MessageBox.Show($"Total de letras en {nombre}: {nombre.Length}", "Mensaje");
+            }
+            SumaTot = SumaVoc + SumaConso;
+            int VocRed = ReducirADigito(SumaVoc);
+            int ConsoRed = ReducirADigito(SumaConso);
+            int TotRed = ReducirADigito(SumaTot);
+
+            ///PERSONALIDAD INTERNA (AUTO MOTIVACION)
+            ///PERSONALIDAD EXTERNA (AUTO IMAGEN)
+            ///TALENTO AUTO EXPRESION
+            ///
+            /*
+            MessageBox.Show($"SUMA VOCALES {SumaVoc}  VOCALES REDUCIDAS{VocRed}", "Mensaje");
+            MessageBox.Show($"SUMA CONSO {SumaConso}  CONSO REDUCIDAS{ConsoRed}", "Mensaje");
+            MessageBox.Show($"SUMA TOT {SumaTot}  TOT REDUCIDAS{TotRed}", "Mensaje");
+            */
+            ///Reto Auto motivacion Primer vocal - Ultima vocal
+            ///Reto Auto imagen  primer conso - Ultima conso 
+            ///Reto de Auto expresion suma de los 2 anteriores. 
+
+            NegocioExpresion expre = new NegocioExpresion();
+            NegocioImagen ima = new NegocioImagen();
+            NegocioMotivacion moti = new NegocioMotivacion();
+
+            int RetoMoti = Math.Abs(ReducirADigito(primerVocal - ultimaVocal));
+            int Ima = Math.Abs(PrimerConso - UltimaConso);
+            int RetoIma = ReducirADigito(Ima);
+            int RetoExp = ReducirADigito(RetoMoti + RetoIma);
+
+            MessageBox.Show($"Reto Expresion {RetoExp}  ", "Mensaje");
+            MessageBox.Show($"Reto motivacion {RetoMoti}  ", "Mensaje");
+            MessageBox.Show($"Reto Imagen {RetoIma}  ", "Mensaje");
+
+            gvAutoexpresion.DataSource = expre.ObtenerAutoExpresionn(RetoExp);
+            gvAutoexpresion.DataBind();
+            gvAutoimagen.DataSource = ima.ObtenerAutoImagenn(RetoIma);
+            gvAutoimagen.DataBind();
+            gvAutomotivacion.DataSource = moti.ObtenerAutoMotivacionn(RetoMoti);
+            gvAutomotivacion.DataBind();
+
+            /*
+            MessageBox.Show($"Reto motivacion {RetoMoti}  ", "Mensaje");
+            MessageBox.Show($"Reto Imagen {RetoIma}  ", "Mensaje");
+            MessageBox.Show($"Reto Expresion {RetoExp}  ", "Mensaje");
+            
+            for (int i = 0; i < CantNombres; i++)
+            {
+
+                MessageBox.Show($"SUMA DE LAS VOCALES DEL NOMBRE/APELLIDO EN LA POSICION {i + 1}   YA REDUCIDO DA:{ReducirADigito(SumaVocales[i])}  ", "Mensaje");
+            }
+            */
+        }
     }
 }
