@@ -1,0 +1,22 @@
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\Negocio\bin\Debug\Negocio.dll
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\Negocio\bin\Debug\Negocio.pdb
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\Negocio\obj\Debug\Negocio.dll
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\Negocio\obj\Debug\Negocio.pdb
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\Negocio\bin\Debug\Dao.dll
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\Negocio\bin\Debug\Entidades.dll
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\Negocio\bin\Debug\Dao.pdb
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\Negocio\bin\Debug\Entidades.pdb
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Num\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\david\Desktop\Numerologia\Num\Num\Negocio\bin\Debug\Negocio.dll
+C:\Users\david\Desktop\Numerologia\Num\Num\Negocio\bin\Debug\Negocio.pdb
+C:\Users\david\Desktop\Numerologia\Num\Num\Negocio\bin\Debug\Dao.dll
+C:\Users\david\Desktop\Numerologia\Num\Num\Negocio\bin\Debug\Entidades.dll
+C:\Users\david\Desktop\Numerologia\Num\Num\Negocio\bin\Debug\Dao.pdb
+C:\Users\david\Desktop\Numerologia\Num\Num\Negocio\bin\Debug\Entidades.pdb
+C:\Users\david\Desktop\Numerologia\Num\Num\Negocio\obj\Debug\Negocio.csproj.AssemblyReference.cache
+C:\Users\david\Desktop\Numerologia\Num\Num\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Users\david\Desktop\Numerologia\Num\Num\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Users\david\Desktop\Numerologia\Num\Num\Negocio\obj\Debug\Negocio.dll
+C:\Users\david\Desktop\Numerologia\Num\Num\Negocio\obj\Debug\Negocio.pdb
