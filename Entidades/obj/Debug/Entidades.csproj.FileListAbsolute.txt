@@ -1,0 +1,18 @@
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Entidades\bin\Debug\Entidades.dll
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Entidades\bin\Debug\Entidades.pdb
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Entidades\bin\Debug\Dao.dll
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Entidades\bin\Debug\Dao.pdb
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Entidades\obj\Debug\Entidades.csproj.CopyComplete
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Entidades\obj\Debug\Entidades.dll
+C:\Users\david\Desktop\PROYECTOS EN C#\Num\Entidades\obj\Debug\Entidades.pdb
+C:\Users\david\Desktop\Numerologia\Num\Entidades\bin\Debug\Entidades.dll
+C:\Users\david\Desktop\Numerologia\Num\Entidades\bin\Debug\Entidades.pdb
+C:\Users\david\Desktop\Numerologia\Num\Entidades\bin\Debug\Dao.dll
+C:\Users\david\Desktop\Numerologia\Num\Entidades\bin\Debug\Dao.pdb
+C:\Users\david\Desktop\Numerologia\Num\Entidades\obj\Debug\Entidades.csproj.AssemblyReference.cache
+C:\Users\david\Desktop\Numerologia\Num\Entidades\obj\Debug\Entidades.csproj.CoreCompileInputs.cache
+C:\Users\david\Desktop\Numerologia\Num\Entidades\obj\Debug\Entidades.csproj.CopyComplete
+C:\Users\david\Desktop\Numerologia\Num\Entidades\obj\Debug\Entidades.dll
+C:\Users\david\Desktop\Numerologia\Num\Entidades\obj\Debug\Entidades.pdb
